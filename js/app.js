@@ -10,7 +10,7 @@ app.use(cors()); // Permite requisições de outros domínios
 app.use(express.json());
 
 // Conexão com o MongoDB
-mongoose.connect('mongodb://localhost:27017/presenca', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb://localhost:27017/presenca', { });
 
 // Definir o esquema do usuário
 const usuarioSchema = new mongoose.Schema({
