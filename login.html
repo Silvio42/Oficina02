@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/estilo.css">
+    <title>Login</title>
+</head>
+
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html">Início</a></li>
+            <li><a href="#">Login</a></li>
+        </ul>
+    </nav>
+    <header class="header">
+        <h1>Controle de presença - ELLP</h1>
+    </header>
+    <main class="main">
+
+        <section class="form-login">
+            <h2>Login</h2>
+            <form action="principal.html">
+                <div class="input-wrapper">
+                    <label for="username">E-mail:</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="input-wrapper">
+                    <label for="password">Senha:   </label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="button" onclick="window.location.href = 'index.html';">Entrar</button>
+                <button type="button" onclick="window.location.href = 'cadastro.html';">Criar nova conta</button>
+            </form>
+
+        </section>
+
+    </main>
+    <footer class="footer">
+        <p>Controle de presença - ELLP - 2024</p>
+    </footer>
+</body>
+
+</html>
