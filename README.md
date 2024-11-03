@@ -69,30 +69,30 @@ Siga estas etapas para configurar o projeto em seu ambiente local:
 
 1. Clone o repositório do projeto: Abra o terminal ou prompt de comando e execute o comando abaixo para clonar o repositório:
 
-git clone https://github.com/Silvio42/Oficina02
-Acesse o diretório do projeto
+- git clone https://github.com/Silvio42/Oficina02
+- Acesse o diretório do projeto
 
 2. Configuração do MongoDB:
 
-Inicie o serviço MongoDB: Abra um terminal separado e execute o comando para iniciar o mongod: mongod
-Inicie o shell do MongoDB: Em outro terminal, inicie o shell mongosh para interagir com o MongoDB: mongosh
+- Inicie o serviço MongoDB: Abra um terminal separado e execute o comando para iniciar o mongod: mongod
+- Inicie o shell do MongoDB: Em outro terminal, inicie o shell mongosh para interagir com o MongoDB: mongosh
 
 3. Instale as dependências:
 
-No diretório do projeto, execute o seguinte comando para instalar as dependências necessárias, incluindo o CORS:
+- No diretório do projeto, execute o seguinte comando para instalar as dependências necessárias, incluindo o CORS:
 
-npm install
-npm install cors
+- npm install
+- npm install cors
 
 4. Inicialize o servidor Node.js: Navegue até a pasta js e inicie o servidor Node.js com o seguinte comando:
 
-node app.js
+- node app.js
 
 5. Abra o projeto no VS Code: 
 
-No Visual Studio Code, abra o diretório onde o projeto foi clonado.
-Instale a extensão Live Server: No VS Code, instale a extensão Live Server, que facilita a execução do projeto no navegador.
-Execute o projeto: Com a extensão Live Server instalada, clique com o botão direito no arquivo index.html e selecione "Open with Live Server" para rodar o projeto no navegador.
+- No Visual Studio Code, abra o diretório onde o projeto foi clonado.
+- Instale a extensão Live Server: No VS Code, instale a extensão Live Server, que facilita a execução do projeto no navegador.
+- Execute o projeto: Com a extensão Live Server instalada, clique com o botão direito no arquivo index.html e selecione "Open with Live - Server" para rodar o projeto no navegador.
 
 
 
