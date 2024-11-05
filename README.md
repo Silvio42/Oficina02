@@ -11,7 +11,7 @@ Sistema desenvolvido para o gerenciamento de presença nas oficinas do projeto d
 - [Pré-requisitos](#pré-requisitos)
 - [Instalação](#instalação)
 
-## Autores:
+## Autores
 
 * Jhennifer Andrade RA: 2267896
 * Silvio Jorge de Oliveira Filho RA: 2052261
