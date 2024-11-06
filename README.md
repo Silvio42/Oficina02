@@ -13,6 +13,7 @@ Sistema desenvolvido para o gerenciamento de presença nas oficinas do projeto d
 
 ## Autores
 
+* Bruno Alves RA: 2426730
 * Jhennifer Andrade RA: 2267896
 * Silvio Jorge de Oliveira Filho RA: 2052261
 
