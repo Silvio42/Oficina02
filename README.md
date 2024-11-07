@@ -23,14 +23,13 @@ O Controle de presença - ELLP foi criado para auxiliar o controle de frequênci
 
 ## Requisitos funcionais
 
-- **RF01**: O sistema deve permitir o cadastro de usuários, exigindo informações como e-mail, data de nascimento e a opção de voluntário ou aluno.
-- **RF02**: O sistema deve permitir que os usuários criem uma senha durante o processo de cadastro, para que possam utilizá-la posteriormente no login.
-- **RF03**: O sistema deve permitir que os usuários façam login para acessar o sistema, utilizando o e-mail e a senha cadastrada.
-- **RF04**: O sistema deve permitir que voluntários inscrevam alunos nas oficinas, associando-os a turmas.
-- **RF05**: O sistema deve permitir que os voluntários registrem a presença ou ausência dos alunos nas oficinas, com opção de marcação de faltas ou presenças.
-- **RF06**: O sistema deve permitir que os alunos acessem com permissões restritas, limitando o acesso deles apenas às suas próprias informações e registros de presença.
-- **RF07**: O sistema deve permitir que os alunos consultem seu próprio histórico de faltas e presença.
-- **RF08**: O sistema deve informar aos alunos e voluntários a quantidade máxima de faltas permitidas e o total acumulado até o momento.
+- **RF01**: O sistema deve permitir o cadastro de voluntários, exigindo informações como e-mail, data de nascimento e senha, que deve ser reinserida para garantir integridade.
+- **RF02**: O sistema deve permitir que os voluntários realizem o login, utilizando o e-mail e a senha cadastrada e confirmada anteriormente.
+- **RF03**: O sistema deve permitir que os voluntários cadastrem as oficinas ofertadas pelo projeto.
+- **RF04**: O sistema deve permitir a inclusão de voluntários nas oficinas.
+- **RF05**: O sistema deve permitir a inclusão de alunos nas oficinas.
+- **RF06**: O sistema deve disponibilizar certificados de presença aos voluntários.
+- **RF07**: O sistema deve disponibilizar certificados de presença aos alunos das oficinas.
 
 ## Tecnologias utilizadas
 
