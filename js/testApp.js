@@ -11,7 +11,6 @@ mongoose.connect('mongodb://localhost:27017/presenca', {
 
 const app = express();
 
-// Definindo o esquema e o modelo
 const userSchema = new mongoose.Schema({
     usuario: String,
     senha: String,
@@ -21,7 +20,7 @@ const userSchema = new mongoose.Schema({
 
 const User = mongoose.model('User', userSchema);
 
-// Função de teste para adicionar um usuário
+// Função de teste para adicionar um usuário (TESTE BACK-END)
 async function testInsertUser() {
     const newUser = new User({
         usuario: "TesteUsuario",
