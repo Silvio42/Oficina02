@@ -25,11 +25,11 @@ O Controle de presença - ELLP foi criado para auxiliar o controle de frequênci
 
 - **RF01**: O sistema deve permitir o cadastro de voluntários, exigindo informações como e-mail, data de nascimento e senha, que deve ser reinserida para garantir integridade.
 - **RF02**: O sistema deve permitir que os voluntários realizem o login, utilizando o e-mail e a senha cadastrada e confirmada anteriormente.
-- **RF03**: O sistema deve permitir que os voluntários cadastrem as oficinas ofertadas pelo projeto.
-- **RF04**: O sistema deve permitir a inclusão de voluntários nas oficinas.
-- **RF05**: O sistema deve permitir a inclusão de alunos nas oficinas.
+- **RF03**: O sistema deve permitir que os voluntários cadastrem as workshops ofertadas pelo projeto.
+- **RF04**: O sistema deve permitir a inclusão de voluntários em workshops.
+- **RF05**: O sistema deve permitir a inclusão de alunos nos workshops.
 - **RF06**: O sistema deve disponibilizar certificados de presença aos voluntários.
-- **RF07**: O sistema deve disponibilizar certificados de presença aos alunos das oficinas.
+- **RF07**: O sistema deve disponibilizar certificados de presença aos alunos dos workshops.
 
 ## Tecnologias utilizadas
 
