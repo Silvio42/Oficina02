@@ -39,11 +39,43 @@ O Controle de presença - ELLP foi criado para auxiliar o controle de frequênci
 
 ## Arquitetura do sistema
 
-A arquitetura do sistema será baseada em uma arquitetura de três camadas para modularizar responsabilidades, garantir escalabilidade e facilitar a manutenção.
+O diagrama apresenta a arquitetura do sistema organizada em uma estrutura de **três camadas**, visando modularizar responsabilidades, facilitar a escalabilidade e simplificar a manutenção.
 
+### Backend
+- **Domain**:
+  - Inclui as definições de **Data**, **Entities** e **UseCases**.
+  - Responsável pela lógica de negócio e manipulação dos dados.
+- **Infra / Repositories**:
+  - Camada que faz a comunicação com a infraestrutura de dados, incluindo **Models**, **Repositories** e **Mappers**.
+  - Implementa as integrações com bancos de dados e provedores externos.
+- **Main**:
+  - Define o ponto de entrada da aplicação, incluindo **Controllers** e **Routes**.
+  - Centraliza a configuração e a estrutura de apresentação.
+- **Testes**:
+  - **Unitários**: Testes que verificam componentes isolados.
+  - **Integração**: Testes que validam o fluxo entre diferentes partes do sistema.
+  - **Mocks**: Simulação de dados para testar funcionalidades sem depender de serviços externos.
+
+### Frontend
+- **Components**:
+  - Contém todos os componentes reutilizáveis da aplicação.
+  - Organiza componentes específicos para cada página, facilitando a manutenção.
+- **Pages**:
+  - Define a implementação das páginas da aplicação.
+  - Inclui a configuração de rotas para navegação entre páginas.
+- **Services**:
+  - Camada responsável por integrações externas e chamadas de API.
+  - Centraliza a lógica de comunicação com serviços.
+- **Utils**:
+  - Inclui funções auxiliares e reutilizáveis em várias partes do projeto.
+- **Testes**:
+  - **Unitários**: Testes que verificam a funcionalidade de componentes individuais.
+  - **Integração**: Testes que validam funcionalidades completas em uma página.
+  - **Mocks**: Utilizados para simular o retorno de dados de serviços externos.
+ 
 ### Diagrama de arquitetura
 
-![Diagrama de Arquitetura](docs/diagramas/Diagrama%20de%20Arquitetura.jpg)
+Para ver o diagrama completo, acesse o [link do diagrama](https://whimsical.com/arquitetura-ofc-2-3XmD4x6SmjRkikRgo9i6ot).
 
 ### Fluxo de comunicação
 
