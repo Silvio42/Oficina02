@@ -6,8 +6,8 @@ import { Button } from "primereact/button";
 import { InputIcon } from "primereact/inputicon";
 
 import { WorkshopEntity } from "@/entities/WorkshopEntity";
-import { WorkshopService } from "@/services/WorkshopService";
 import { ListItems } from "@/components/pages/workshops/ListItems";
+import { getAllWorkshop, deleteWorkshop } from "@/services/WorkshopService";
 
 import "./styles.css";
 
@@ -21,8 +21,8 @@ export default function Wokshops() {
     try {
       setIsLoading(true);
 
-      const data = await new WorkshopService().getAll();
-      setWorkshops(data || []);
+      const data = await getAllWorkshop();
+      if (data?.length) setWorkshops(data);
     } finally {
       setIsLoading(false);
     }
@@ -31,15 +31,15 @@ export default function Wokshops() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useMemo(() => loadWorkshops(), [workshops]);
 
-  const deleteWorkshop = async (id: string) => {
-    await new WorkshopService().delete(id);
+  const deleteWorkshopSubmit = async (id: string) => {
+    await deleteWorkshop(id);
     setWorkshops([]);
     await loadWorkshops();
   };
 
   return (
     <main className="main container">
-      <Link href="/workshops/criar">
+      <Link data-testid="create-workshop-redirect" href="/workshops/criar">
         <Button className="create-action">
           CRIAR NOVO WORKSHOP
           <InputIcon className="pi pi-plus" style={{ fontSize: "1.25rem" }} />
@@ -52,7 +52,7 @@ export default function Wokshops() {
           startAt: dayjs(workshop.startAt).format("DD MMMM YYYY"),
         }))}
         isLoading={isLoading}
-        deleteWorkshop={deleteWorkshop}
+        deleteWorkshop={deleteWorkshopSubmit}
       ></ListItems>
     </main>
   );

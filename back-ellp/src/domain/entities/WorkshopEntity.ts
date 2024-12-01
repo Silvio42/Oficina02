@@ -4,7 +4,7 @@ export type WorkshopEntity = {
   id?: string;
   name: string;
   description: string;
-  startAt: Date;
+  startAt: string | Date;
   manager: string | UserEntity;
   volunteers: Array<string | UserEntity>;
 };
