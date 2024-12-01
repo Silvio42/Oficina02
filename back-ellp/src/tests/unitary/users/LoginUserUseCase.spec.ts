@@ -1,25 +1,25 @@
 import "reflect-metadata";
 import { expect, test, describe, vitest, beforeAll } from "vitest";
 
-import { CreateUserUseCase } from "../../../domain/useCases/users/CreateUserUseCase";
+import { LoginUserUseCase } from "../../../domain/useCases/users/LoginUserUseCase";
 import { UserRepositoryMock } from "../../mocks/UserRepositoryMock";
 import { UserEntity } from "@domain/entities/UserEntity";
 import { UserRepository } from "@infra/repositories/mongo/users/UserRepository";
 
 let fakerUserRepository: UserRepositoryMock;
-let createUserUseCase: CreateUserUseCase;
+let loginUserUseCase: LoginUserUseCase;
 
-describe("Create User Use Case", () => {
+describe("Login User Use Case", () => {
   beforeAll(() => {
     vitest.clearAllMocks();
     fakerUserRepository = new UserRepositoryMock();
-    createUserUseCase = new CreateUserUseCase(
+    loginUserUseCase = new LoginUserUseCase(
       fakerUserRepository as UserRepository
     );
   });
 
-  test("Should be able to call use case and create user", async () => {
-    const execution = vitest.spyOn(createUserUseCase, "execute");
+  test("Should be able to call use case and login user", async () => {
+    const execution = vitest.spyOn(loginUserUseCase, "execute");
     const mockUserData: UserEntity = {
       email: "user@utfpr.com",
       password: "user123",
@@ -27,7 +27,7 @@ describe("Create User Use Case", () => {
       id: "123",
     };
 
-    const user = await createUserUseCase.execute(mockUserData);
+    const user = await loginUserUseCase.execute(mockUserData);
 
     expect(execution).toHaveBeenCalledTimes(1);
     expect(user).toStrictEqual(mockUserData);

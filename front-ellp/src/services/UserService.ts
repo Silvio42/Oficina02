@@ -12,4 +12,14 @@ export class UserService {
       dateOfBirth,
     });
   }
+
+  async login(
+    email: string,
+    password: string
+  ) {
+    return axios.post("http://localhost:3333/api/users/login", {
+      email,
+      password
+    });
+  }
 }
