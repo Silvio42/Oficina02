@@ -1,7 +1,7 @@
 import { UserEntity } from "@domain/entities/UserEntity";
 
 export type Params = {
-  username: string;
+  email: string;
   password: string;
 };
 

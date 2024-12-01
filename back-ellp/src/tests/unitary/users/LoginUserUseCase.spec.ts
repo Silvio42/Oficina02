@@ -21,9 +21,8 @@ describe("Login User Use Case", () => {
   test("Should be able to call use case and login user", async () => {
     const execution = vitest.spyOn(loginUserUseCase, "execute");
     const mockUserData: UserEntity = {
-      username: "User",
-      password: "user@utfpr.com",
-      role: "admin",
+      email: "user@utfpr.com",
+      password: "user123",
       dateOfBirth: "11/11/2011",
       id: "123",
     };

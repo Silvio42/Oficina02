@@ -9,13 +9,13 @@ export default function Login() {
   const [errorMessage, setErrorMessage] = useState("");
 
   const login = async () => {
-    const username = (document?.getElementById("username") as HTMLInputElement)!
+    const email = (document?.getElementById("email") as HTMLInputElement)!
       .value;
     const password = (document?.getElementById("password") as HTMLInputElement)!
       .value;
 
     try {
-      const response = await new UserService().login(username, password);
+      const response = await new UserService().login(email, password);
 
       if (response.status === 200) {
         window.location.href = "/workshops";
@@ -42,8 +42,8 @@ export default function Login() {
         <h2>Login</h2>
         <form action="principal.html">
           <div className="input-wrapper">
-            <label htmlFor="username">E-mail:</label>
-            <input type="text" id="username" name="username" required />
+            <label htmlFor="email">E-mail:</label>
+            <input type="text" id="email" name="email" required />
           </div>
           <div className="input-wrapper">
             <label htmlFor="password">Senha:</label>
