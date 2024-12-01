@@ -165,15 +165,3 @@ li {
   align-items: center;
   justify-content: space-between;
 }
-
-.p-datepicker-title {
-  display: flex;
-  flex-direction: row;
-  margin: 0 0.5rem;
-}
-
-.p-datepicker-trigger,
-.p-inputtext {
-  margin-top: 0px !important;
-  width: fit-content;
-}
