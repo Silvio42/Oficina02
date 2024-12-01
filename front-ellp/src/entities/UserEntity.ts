@@ -1,0 +1,7 @@
+export type UserEntity = {
+  id: string;
+  email: string;
+  password: string;
+  dateOfBirth: string;
+  role: string;
+};
