@@ -1,13 +1,18 @@
-import Login from "@/app/login/page";
 import { render, screen } from "@testing-library/react";
-import { describe, expect, it } from "vitest";
+import { describe, it, expect } from "vitest";
+import Login from "../../app/login/page";
 
 describe("Login Component", () => {
   it("Should render the login form and the login button", () => {
     render(<Login />);
 
-    expect(screen.getByLabelText(/e-mail/i)).toBeInTheDocument();
-    expect(screen.getByLabelText(/senha/i)).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: /entrar/i })).toBeInTheDocument();
+    const emailInput = screen.getByLabelText(/e-mail/i);
+    expect(emailInput).toBeInTheDocument();
+
+    const passwordInput = screen.getByLabelText(/senha/i);
+    expect(passwordInput).toBeInTheDocument();
+
+    const loginButton = screen.getByRole("button", { name: /entrar/i });
+    expect(loginButton).toBeInTheDocument();
   });
 });

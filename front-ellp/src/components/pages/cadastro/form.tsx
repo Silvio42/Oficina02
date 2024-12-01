@@ -4,7 +4,6 @@ import { UserService } from "@/services/UserService";
 
 export default function RegisterForm() {
   const register = async (email: string, password: string, dateOfBirth: string) => {
-    // Lógica para registrar o usuário
     await new UserService().register(email, password, dateOfBirth);
     window.location.href = "/login";
   };
