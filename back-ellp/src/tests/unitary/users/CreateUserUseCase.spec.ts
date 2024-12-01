@@ -21,7 +21,7 @@ describe("Create User Use Case", () => {
   test("Should be able to call use case and create user", async () => {
     const execution = vitest.spyOn(createUserUseCase, "execute");
     const mockUserData: UserEntity = {
-      email: "Email",
+      username: "User",
       password: "user@utfpr.com",
       role: "admin",
       dateOfBirth: "11/11/2011",

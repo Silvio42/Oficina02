@@ -2,14 +2,16 @@ import axios from "axios";
 
 export class UserService {
   async register(
-    email: string,
+    username: string,
     password: string,
-    dateOfBirth: string
+    dateOfBirth: string,
+    role: string
   ) {
     return axios.post("http://localhost:3333/api/users/register", {
-      email,
+      username,
       password,
       dateOfBirth,
+      role,
     });
   }
 }
