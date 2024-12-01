@@ -14,4 +14,14 @@ export class UserService {
       role,
     });
   }
+
+  async login(
+    username: string,
+    password: string
+  ) {
+    return axios.post("http://localhost:3333/api/users/login", {
+      username,
+      password
+    });
+  }
 }
