@@ -8,7 +8,7 @@ import { InputTextarea } from "primereact/inputtextarea";
 import { useState } from "react";
 import Link from "next/link";
 
-import { WorkshopService } from "@/services/WorkshopService";
+import { createWorkshop } from "@/services/WorkshopService";
 
 import "./styles.css";
 
@@ -20,16 +20,19 @@ export default function WokshopsCreation() {
   });
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const onSubmit = (e: any) => {
+  const onSubmit = async (e: any) => {
     e.preventDefault();
 
-    new WorkshopService().create(
-      fields.name,
-      fields.description,
-      fields.startAt,
-      "67354f6e1d2845faca470fa0"
-    );
-    window.location.href = "/workshops";
+    try {
+      await createWorkshop(
+        fields.name,
+        fields.description,
+        fields.startAt,
+        "67354f6e1d2845faca470fa0"
+      );
+    } finally {
+      window.location.href = "/workshops";
+    }
   };
 
   return (

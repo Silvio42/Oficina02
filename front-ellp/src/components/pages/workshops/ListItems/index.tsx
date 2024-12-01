@@ -47,6 +47,7 @@ export const ListItems = ({
             value={globalFilterValue}
             onChange={onGlobalFilterChange}
             placeholder="Pesquisar..."
+            data-testid="table-search"
             style={{ width: "100%" }}
           />
           <InputIcon className="pi pi-search" />
@@ -63,6 +64,7 @@ export const ListItems = ({
       rows={10}
       rowsPerPageOptions={[10, 15, 25, 50]}
       dataKey="id"
+      data-testid="data-table"
       filters={filters}
       header={renderHeader}
       filterDisplay="row"
@@ -80,7 +82,12 @@ export const ListItems = ({
       paginatorTemplate="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
     >
       <Column field="id" header="ID"></Column>
-      <Column field="name" sortable header="Nome"></Column>
+      <Column
+        field="name"
+        data-testid="column-name"
+        sortable
+        header="Nome"
+      ></Column>
       <Column field="description" header="Descrição"></Column>
       <Column field="startAt" sortable header="Começa quando?"></Column>
       <Column field="volunteers.length" sortable header="Voluntários"></Column>
