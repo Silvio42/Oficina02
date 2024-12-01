@@ -75,7 +75,7 @@ export const ListItems = ({
         "description",
         "startAt",
         "volunteers.length",
-        "manager.username",
+        "manager.email",
       ]}
       emptyMessage="Nenhum workshop encontrado."
       tableStyle={{ minWidth: "100%", width: "100%" }}

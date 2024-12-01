@@ -24,9 +24,9 @@ export class UserRepository
   }
 
   async login(params: LoginUserData.Params): Promise<LoginUserData.Response> {
-    const { username, password } = params;
+    const { email, password } = params;
 
-    const objectData = await UserModel.findOne({ username }).lean();
+    const objectData = await UserModel.findOne({ email }).lean();
     
     if (!objectData) return null;
 

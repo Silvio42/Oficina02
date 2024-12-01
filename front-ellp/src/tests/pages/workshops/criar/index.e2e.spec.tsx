@@ -7,7 +7,7 @@ vitest.mock(import("@/services/WorkshopService"), async (importOriginal) => {
   const actual = await importOriginal();
   return {
     ...actual,
-    create: vitest.fn().mockResolvedValue({}),
+    createWorkshop: vitest.fn().mockResolvedValue({}),
     getByIdWorkshop: vitest.fn().mockResolvedValue({
       id: "1",
       name: "Test Workshop 1",
