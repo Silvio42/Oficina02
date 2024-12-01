@@ -12,7 +12,7 @@ export class WorkshopController {
       .resolve(CreateWorkshopUseCase)
       .execute(request?.body);
 
-    return response.json(workshop);
+    return response.status(201).json(workshop);
   }
 
   async update(request: Request, response: Response): Promise<any> {
@@ -43,7 +43,7 @@ export class WorkshopController {
     const term = request.query?.term;
 
     const workshop = await container.resolve(WorkshopPresentation).findAll({
-      filters: request.params,
+      filters: request.query,
       term: term && String(term),
     });
 

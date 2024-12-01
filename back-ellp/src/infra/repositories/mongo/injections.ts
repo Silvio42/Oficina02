@@ -1,8 +1,10 @@
 import { container } from "tsyringe";
 
 import { UserRepository } from "../../../infra/repositories/mongo/users/UserRepository";
-import { UserRepositoryMock } from "../../../tests/mocks/UserRepositoryMock";
 import { WorkshopRepository } from "./workshop/WorkshopRepository";
+
+import { UserRepositoryMock } from "../../../tests/mocks/repositories/UserRepositoryMock";
+import { WorkshopRepositoryMock } from "../../../tests/mocks/repositories/WorkshopRepositoryMock";
 
 container.registerSingleton(
   "UserRepository",
@@ -11,5 +13,5 @@ container.registerSingleton(
 
 container.registerSingleton(
   "WorkshopRepository",
-  process.env.NODE_ENV !== "test" ? WorkshopRepository : WorkshopRepository
+  process.env.NODE_ENV !== "test" ? WorkshopRepository : WorkshopRepositoryMock
 );

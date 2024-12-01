@@ -2,7 +2,7 @@ import "reflect-metadata";
 import { expect, test, describe, vitest, beforeAll } from "vitest";
 
 import { LoginUserUseCase } from "../../../domain/useCases/users/LoginUserUseCase";
-import { UserRepositoryMock } from "../../mocks/UserRepositoryMock";
+import { UserRepositoryMock } from "../../mocks/repositories/UserRepositoryMock";
 import { UserEntity } from "@domain/entities/UserEntity";
 import { UserRepository } from "@infra/repositories/mongo/users/UserRepository";
 
