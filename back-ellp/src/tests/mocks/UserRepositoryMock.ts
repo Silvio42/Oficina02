@@ -3,7 +3,7 @@ import * as LoginUserData from "../../domain/data/users/ILoginUserData";
 import * as FindByIdUserData from "../../domain/data/users/IFindByIdUserData";
 
 export class UserRepositoryMock
-  implements CreateUserData.ICreateUserData, LoginUserData.ILoginUserData,FindByIdUserData.IFindByIdUserData
+  implements CreateUserData.ICreateUserData, LoginUserData.ILoginUserData, FindByIdUserData.IFindByIdUserData
 {
   async create(
     params: CreateUserData.Params
@@ -14,12 +14,20 @@ export class UserRepositoryMock
   async login(
     params: LoginUserData.Params
   ): Promise<LoginUserData.Response> {
-    return { ...params, id: "123", dateOfBirth: "11/11/2011", role: "admin" };
+    return { ...params, id: "123", dateOfBirth: "11/11/2011" };
   }
 
-  findById(
+  async findById(
     params: FindByIdUserData.Params
   ): Promise<FindByIdUserData.Response> {
-    return {} as any;
+    if (params.id === "123") {
+      return {
+        email: "user@utfpr.com",
+        password: "senha123",
+        dateOfBirth: "11/11/2011",
+        id: "123",
+      };
+    }
+    return null; // Caso o ID não seja encontrado
   }
 }
