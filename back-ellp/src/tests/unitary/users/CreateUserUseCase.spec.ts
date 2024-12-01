@@ -22,7 +22,7 @@ describe("Create User Use Case", () => {
     const execution = vitest.spyOn(createUserUseCase, "execute");
     const mockUserData: UserEntity = {
       email: "user@utfpr.com",
-      password: "user123",
+      password: "1234",
       dateOfBirth: "11/11/2011",
       id: "123",
     };

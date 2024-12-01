@@ -1,6 +1,7 @@
 export type UserEntity = {
   id: string;
-  email: string;
+  username: string;
   password: string;
   dateOfBirth: string;
+  role: string;
 };

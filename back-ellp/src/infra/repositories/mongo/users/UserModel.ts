@@ -2,16 +2,18 @@ import { Document, Schema, model } from "mongoose";
 
 export interface IUserModel {
   _id: string;
-  email: string;
+  username: string;
   password: string;
   dateOfBirth: string;
+  role: string;
 }
 
 const userSchema = new Schema(
   {
-    email: String,
+    username: String,
     password: String,
     dateOfBirth: String,
+    role: String,
   },
   { timestamps: true, versionKey: false }
 );
