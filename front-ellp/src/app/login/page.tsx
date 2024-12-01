@@ -1,6 +1,41 @@
+"use client";
+
+import { UserService } from "@/services/UserService";
+import axios from "axios";
 import Link from "next/link";
+import { useState } from "react";
 
 export default function Login() {
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const login = async () => {
+    const username = (document?.getElementById("username") as HTMLInputElement)!
+      .value;
+    const password = (document?.getElementById("password") as HTMLInputElement)!
+      .value;
+
+    try {
+      const response = await new UserService().login(username, password);
+
+      if (response.status === 200) {
+        window.location.href = "/workshops";
+      } else {
+        setErrorMessage("Algo deu errado. Tente novamente mais tarde.");
+      }
+    }
+    catch (error) {
+      if (axios.isAxiosError(error)) {
+        if (error.response?.status === 400) {
+          setErrorMessage(
+            error.response.data?.error || "Erro desconhecido ao fazer login."
+          );
+        } else {
+          setErrorMessage("Erro inesperado. Tente novamente mais tarde.");
+        }
+      }
+    }
+  };
+
   return (
     <main className="main login-content">
       <section className="form-login">
@@ -14,12 +49,15 @@ export default function Login() {
             <label htmlFor="password">Senha:</label>
             <input type="password" id="password" name="password" required />
           </div>
-          <Link type="button" href="/">
+          {errorMessage && (
+            <p className="error-message" style={{ color: "red" }}>
+              {errorMessage}
+            </p>
+          )}
+          <button type="button" onClick={login}>
             Entrar
-          </Link>
-          <Link type="button" href="/cadastro">
-            Criar nova conta
-          </Link>
+          </button>
+          <Link href="/cadastro">Criar nova conta</Link>
         </form>
       </section>
     </main>
