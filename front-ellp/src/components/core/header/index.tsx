@@ -10,6 +10,9 @@ export const Header = () => {
         <li>
           <Link href="/login">Login</Link>
         </li>
+        <li>
+          <Link href="/workshops">Workshops</Link>
+        </li>
       </ul>
     </nav>
   );
