@@ -50,7 +50,7 @@ export default function Login() {
             <input type="password" id="password" name="password" required />
           </div>
           {errorMessage && (
-            <p className="error-message" style={{ color: "red" }}>
+            <p id="error-message" style={{ color: "red" }}>
               {errorMessage}
             </p>
           )}
