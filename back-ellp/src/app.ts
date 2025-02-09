@@ -17,6 +17,15 @@ app.use(express.json());
 app.use("/api", mainRoutes);
 app.use(errors());
 
-const port = 3333;
+const isVitest = process.env.NODE_ENV === "test";
+const port = isVitest ? 0 : 3333;
 
-app.listen(port, () => console.log(`Servidor rodando na porta ${port}`));
+const server = app.listen(port, () => {
+    const actualPort = (server.address() as any).port;
+    console.log(`Servidor rodando na porta ${actualPort}`);
+}).on('error', (err: NodeJS.ErrnoException) => {
+    if (err.code === 'EADDRINUSE') {
+        console.error(`A porta ${port} já está em uso. Encerrando...`);
+        process.exit(1);
+    }
+});

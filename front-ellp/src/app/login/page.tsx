@@ -5,7 +5,7 @@ import axios from "axios";
 import Link from "next/link";
 import { useState } from "react";
 
-import { setUserId } from "@/actions/userCookies";
+import { setUserId } from "../../actions/userCookies";
 
 import "./styles.css";
 

@@ -7,16 +7,9 @@ export const workshopMock: WorkshopEntity = {
   manager: "Manager Id",
   startAt: new Date().toISOString(),
   volunteers: [],
-  students: [{
-    id: "321",
-    name: "Estudante 1"
-  },
-  {
-    id: "213",
-    name: "Estudante 2"
-  },
-  {
-    id: "432",
-    name: "Estudante 3"
-  }]
+  students: [
+    "321321321321321321321321",
+    "213213213213213213213213",
+    "423423423423423423423423"
+  ]
 };

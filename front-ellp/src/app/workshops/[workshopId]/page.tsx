@@ -1,7 +1,7 @@
 import Link from "next/link";
 import "./styles.css";
-import { SpecificWorkshop } from "@/components/pages/workshops/SpecificWorkshop";
-import { BackButton } from "@/components/core/backButton";
+import { SpecificWorkshop } from "../../../components/pages/workshops/SpecificWorkshop";
+import { BackButton } from "../../../components/core/backButton";
 
 export default async function WokshopPage({
   params,

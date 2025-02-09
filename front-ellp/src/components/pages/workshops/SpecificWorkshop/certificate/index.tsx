@@ -1,16 +1,16 @@
 "use client";
-import { WorkshopAccessEntity } from "@/entities/WorkshopAccessEntity";
+import { WorkshopAccessEntity } from "../../../../../entities/WorkshopAccessEntity";
 
 import "./styles.css";
 import { useMemo, useState } from "react";
-import { getByIdWorkshopAccess } from "@/services/WorkshopAccessService";
-import { getUserId } from "@/actions/userCookies";
+import { getByIdWorkshopAccess } from "../../../../../services/WorkshopAccessService";
+import { getUserId } from "../../../../../actions/userCookies";
 import dayjs from "dayjs";
 import { InputIcon } from "primereact/inputicon";
 import {
   USER_DESCRIPTION_CERTIFICATE_ROLE,
   USER_ROLE,
-} from "@/utils/constants";
+} from "../../../../../utils/constants";
 import html2canvas from "html2canvas";
 
 interface IWorkshopUserCertificate {

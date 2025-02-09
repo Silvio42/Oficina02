@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { useMemo, useState } from "react";
 
-import { getUserId } from "@/actions/userCookies";
+import { getUserId } from "../../../actions/userCookies";
 
 export const Header = () => {
   const [userId, setUserId] = useState<string | null>();
