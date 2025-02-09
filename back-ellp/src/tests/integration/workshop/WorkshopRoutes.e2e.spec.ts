@@ -12,7 +12,6 @@ describe("Workshop Endpoint", () => {
     const mockedData = { ...workshopMock };
     delete mockedData.id;
     delete mockedData.volunteers;
-    delete mockedData.students;
 
     const response = await supertest(app)
       .post("/api/workshops")
