@@ -1,4 +1,5 @@
 import RegisterForm from "@/components/pages/cadastro/form";
+import "./styles.css";
 
 export default function Cadastro() {
   return (

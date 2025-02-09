@@ -3,6 +3,8 @@ import { UserEntity } from "../../../../domain/entities/UserEntity";
 
 export class UserMappers {
   static toEntity(objectData: IUserModel): UserEntity {
+    if (!objectData?._id) return {} as UserEntity;
+
     const data = { ...objectData };
     delete objectData._id;
 
