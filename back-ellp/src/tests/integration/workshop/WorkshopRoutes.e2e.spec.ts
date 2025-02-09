@@ -66,7 +66,7 @@ describe("Workshop Endpoint", () => {
   });
 
   test("Should be able to get a specific workshop when id is not found", async () => {
-    const response = await supertest(app).get(`/api/workshops/0`);
+    const response = await supertest(app).get("/api/workshops/0");
 
     expect(response.status).toBe(200);
     expect(response.body).toStrictEqual({});

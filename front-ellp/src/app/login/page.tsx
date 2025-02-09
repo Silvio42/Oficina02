@@ -5,6 +5,10 @@ import axios from "axios";
 import Link from "next/link";
 import { useState } from "react";
 
+import { setUserId } from "@/actions/userCookies";
+
+import "./styles.css";
+
 export default function Login() {
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -18,12 +22,12 @@ export default function Login() {
       const response = await new UserService().login(email, password);
 
       if (response.status === 200) {
+        setUserId(response.data?.id);
         window.location.href = "/workshops";
       } else {
         setErrorMessage("Algo deu errado. Tente novamente mais tarde.");
       }
-    }
-    catch (error) {
+    } catch (error) {
       if (axios.isAxiosError(error)) {
         if (error.response?.status === 400) {
           setErrorMessage(

@@ -29,7 +29,7 @@ export class WorkshopRepository
       .populate("manager")
       .populate("volunteers")
       .populate("students")
-      .sort({ createdAt: 1 })
+      .sort({ startAt: -1 })
       .lean();
     return WorkshopMappers.toEntities(arrayData);
   }

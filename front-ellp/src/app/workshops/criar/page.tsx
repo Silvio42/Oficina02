@@ -3,15 +3,14 @@
 import { useState } from "react";
 import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
-import { InputIcon } from "primereact/inputicon";
 import { Calendar } from "primereact/calendar";
 import { InputTextarea } from "primereact/inputtextarea";
-import Link from "next/link";
 import { createWorkshop } from "../../../services/WorkshopService";
 import { createStudent, deleteStudent } from "../../../services/StudentService";
 import { StudentEntity } from "../../../entities/StudentEntity";
 
 import "./styles.css";
+import { BackButton } from "@/components/core/backButton";
 
 export default function WokshopsCreation() {
   const [fields, setFields] = useState<{
@@ -36,7 +35,7 @@ export default function WokshopsCreation() {
       const response = await createStudent(newStudent);
       const newStudentData: StudentEntity = {
         id: response.data._doc._id,
-        name: response.data._doc.name
+        name: response.data._doc.name,
       };
 
       setFields((prev) => ({
@@ -49,7 +48,6 @@ export default function WokshopsCreation() {
       console.error("Erro ao adicionar aluno:", error);
     }
   };
-
 
   const handleRemoveStudent = async (studentId: string) => {
     try {
@@ -71,24 +69,20 @@ export default function WokshopsCreation() {
         fields.description,
         fields.startAt,
         "67354f6e1d2845faca470fa0",
-        fields.students.map((student) => student.id).filter((id): id is string => Boolean(id))
+        fields.students
+          .map((student) => student.id)
+          .filter((id): id is string => Boolean(id))
       );
 
       if (response.status === 201) {
         window.location.href = "/workshops";
       }
-    } catch (error) {
-    }
+    } catch (error) {}
   };
 
   return (
     <main className="main container-workshop-creation">
-      <Link href="/workshops" style={{ width: "fit-content" }}>
-        <Button className="back-action">
-          <InputIcon className="pi pi-angle-left" style={{ fontSize: "1.25rem" }} />
-          VOLTAR
-        </Button>
-      </Link>
+      <BackButton path="/workshops"></BackButton>
 
       <form onSubmit={onSubmit}>
         <h3 style={{ textAlign: "center" }}>Criação de Workshop</h3>
@@ -110,11 +104,15 @@ export default function WokshopsCreation() {
             rows={5}
             cols={30}
             value={fields.description}
-            onChange={(e) => setFields({ ...fields, description: e.target.value })}
+            onChange={(e) =>
+              setFields({ ...fields, description: e.target.value })
+            }
           />
         </div>
         <div className="flex-field-box">
-          <label htmlFor="startAt" aria-label="startAt">Data início</label>
+          <label htmlFor="startAt" aria-label="startAt">
+            Data início
+          </label>
           <Calendar
             id="startAt"
             inputId="startAt"
@@ -132,7 +130,10 @@ export default function WokshopsCreation() {
             <label>Alunos</label>
             <ul>
               {fields.students.map((student, index) => (
-                <li key={student.id || `student-${index}`} style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                <li
+                  key={student.id || `student-${index}`}
+                  style={{ display: "flex", alignItems: "center", gap: "10px" }}
+                >
                   <p>{student.name}</p>
                   <Button
                     label="Remover"
@@ -140,8 +141,7 @@ export default function WokshopsCreation() {
                     className="p-button-danger p-button-text remove-button"
                     type="button"
                     onClick={() => {
-                      if (!student.id)
-                        return;
+                      if (!student.id) return;
                       handleRemoveStudent(student.id);
                     }}
                   />
