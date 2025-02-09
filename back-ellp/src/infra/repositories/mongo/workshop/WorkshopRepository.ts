@@ -28,6 +28,7 @@ export class WorkshopRepository
     const arrayData = await WorkshopModel.find(filters)
       .populate("manager")
       .populate("volunteers")
+      .populate("students")
       .sort({ createdAt: 1 })
       .lean();
     return WorkshopMappers.toEntities(arrayData);
@@ -39,6 +40,7 @@ export class WorkshopRepository
     const objectData = await WorkshopModel.findOne({ _id: id })
       .populate("manager")
       .populate("volunteers")
+      .populate("students")
       .lean();
     return WorkshopMappers.toEntity(objectData);
   }

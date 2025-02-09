@@ -1,37 +1,83 @@
 "use client";
 
+import { useState } from "react";
 import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
 import { InputIcon } from "primereact/inputicon";
 import { Calendar } from "primereact/calendar";
 import { InputTextarea } from "primereact/inputtextarea";
-import { useState } from "react";
 import Link from "next/link";
-
-import { createWorkshop } from "@/services/WorkshopService";
+import { createWorkshop } from "../../../services/WorkshopService";
+import { createStudent, deleteStudent } from "../../../services/StudentService";
+import { StudentEntity } from "../../../entities/StudentEntity";
 
 import "./styles.css";
 
 export default function WokshopsCreation() {
-  const [fields, setFields] = useState({
+  const [fields, setFields] = useState<{
+    name: string;
+    description: string;
+    startAt: Date;
+    students: StudentEntity[];
+  }>({
     name: "",
     description: "",
     startAt: new Date(),
+    students: [],
   });
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const onSubmit = async (e: any) => {
+  const [newStudent, setNewStudent] = useState("");
+
+  const handleAddStudent = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!newStudent.trim()) return;
 
     try {
-      await createWorkshop(
+      const response = await createStudent(newStudent);
+      const newStudentData: StudentEntity = {
+        id: response.data._doc._id,
+        name: response.data._doc.name
+      };
+
+      setFields((prev) => ({
+        ...prev,
+        students: [...(prev.students || []), newStudentData],
+      }));
+
+      setNewStudent("");
+    } catch (error) {
+      console.error("Erro ao adicionar aluno:", error);
+    }
+  };
+
+
+  const handleRemoveStudent = async (studentId: string) => {
+    try {
+      await deleteStudent(studentId);
+      setFields((prev) => ({
+        ...prev,
+        students: prev.students.filter((s) => s.id !== studentId),
+      }));
+    } catch (error) {
+      console.error("Erro ao remover aluno:", error);
+    }
+  };
+
+  const onSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      const response = await createWorkshop(
         fields.name,
         fields.description,
         fields.startAt,
-        "67354f6e1d2845faca470fa0"
+        "67354f6e1d2845faca470fa0",
+        fields.students.map((student) => student.id).filter((id): id is string => Boolean(id))
       );
-    } finally {
-      window.location.href = "/workshops";
+
+      if (response.status === 201) {
+        window.location.href = "/workshops";
+      }
+    } catch (error) {
     }
   };
 
@@ -39,10 +85,7 @@ export default function WokshopsCreation() {
     <main className="main container-workshop-creation">
       <Link href="/workshops" style={{ width: "fit-content" }}>
         <Button className="back-action">
-          <InputIcon
-            className="pi pi-angle-left"
-            style={{ fontSize: "1.25rem" }}
-          />
+          <InputIcon className="pi pi-angle-left" style={{ fontSize: "1.25rem" }} />
           VOLTAR
         </Button>
       </Link>
@@ -67,24 +110,58 @@ export default function WokshopsCreation() {
             rows={5}
             cols={30}
             value={fields.description}
-            onChange={(e) =>
-              setFields({ ...fields, description: e.target.value })
-            }
+            onChange={(e) => setFields({ ...fields, description: e.target.value })}
           />
         </div>
         <div className="flex-field-box">
-          <label htmlFor="name">Data início</label>
+          <label htmlFor="startAt" aria-label="startAt">Data início</label>
           <Calendar
-            id="calendar-24h"
+            id="startAt"
+            inputId="startAt"
             value={fields.startAt}
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             onChange={(e: any) => setFields({ ...fields, startAt: e.value })}
             showTime
             hourFormat="24"
             showIcon
+            dateFormat="dd/mm/yy"
           />
         </div>
-        <Button label="SALVAR" type="submit"></Button>
+
+        {fields.students.length > 0 && (
+          <div className="flex-field-box">
+            <label>Alunos</label>
+            <ul>
+              {fields.students.map((student, index) => (
+                <li key={student.id || `student-${index}`} style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                  <p>{student.name}</p>
+                  <Button
+                    label="Remover"
+                    icon="pi pi-trash"
+                    className="p-button-danger p-button-text remove-button"
+                    type="button"
+                    onClick={() => {
+                      if (!student.id)
+                        return;
+                      handleRemoveStudent(student.id);
+                    }}
+                  />
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        <div className="flex-field-box">
+          <InputText
+            id="newStudent"
+            value={newStudent}
+            onChange={(e) => setNewStudent(e.target.value)}
+            placeholder="Nome do aluno"
+          />
+          <Button label="Adicionar Aluno" onClick={handleAddStudent} />
+        </div>
+
+        <Button label="SALVAR" type="submit" />
       </form>
     </main>
   );

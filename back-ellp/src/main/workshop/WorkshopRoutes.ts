@@ -14,6 +14,7 @@ workshopRoutes.post(
       description: Joi.string().required(),
       startAt: Joi.string().required(),
       manager: Joi.string().required(),
+      students: Joi.array().items(Joi.string().regex(/^[0-9a-fA-F]{24}$/)).required(),
     },
   }),
   workshopController.create

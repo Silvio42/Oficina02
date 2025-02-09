@@ -23,7 +23,7 @@ describe("Create User Use Case", () => {
     const mockUserData: UserEntity = {
       email: "user@utfpr.com",
       password: "user123",
-      dateOfBirth: "11/11/2011",
+      dateOfBirth: "01/01/2001",
       id: "123",
     };
 
