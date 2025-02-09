@@ -9,7 +9,7 @@ interface IBackButton {
 }
 
 export const BackButton = ({ path }: IBackButton) => (
-  <Link href={path} style={{ width: "fit-content" }}>
+  <Link href={path} style={{ width: "fit-content" }} data-testid="back-button">
     <Button className="back-action">
       <InputIcon className="pi pi-angle-left" style={{ fontSize: "1.25rem" }} />
       VOLTAR

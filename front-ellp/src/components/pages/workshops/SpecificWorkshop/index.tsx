@@ -74,7 +74,7 @@ export const SpecificWorkshop = ({ workshopId }: { workshopId: string }) => {
   }, [workshopAccess, workshopStatus, workshop]);
 
   return (
-    <div className="container-workshop">
+    <div data-testid="workshop" className="container-workshop">
       {workshopStatus?.label && (
         <div className={`workshop-status-tag ${workshopStatus?.value}`}>
           {workshopStatus?.label}
@@ -92,21 +92,25 @@ export const SpecificWorkshop = ({ workshopId }: { workshopId: string }) => {
         </p>
         <label htmlFor="volunteerSize">Quantidade de voluntários</label>
         <p id="volunteerSize">{workshop?.volunteers?.length || 0}</p>
-        <h4>Seus acessos:</h4>
-        <div className="content-access">
-          <span>
-            <label htmlFor="firstAccess">Primeiro acesso</label>
-            <p id="firstAccess">
-              {dayjs(workshopAccess?.createdAt).format("DD/MM/YYYY HH:mm")}
-            </p>
-          </span>
-          <span>
-            <label htmlFor="lastAccess">Último acesso</label>
-            <p id="lastAccess">
-              {dayjs(workshopAccess?.updatedAt).format("DD/MM/YYYY HH:mm")}
-            </p>
-          </span>
-        </div>
+        {workshopAccess?.id && (
+          <>
+            <h4 data-testid="access">Seus acessos:</h4>
+            <div className="content-access">
+              <span>
+                <label htmlFor="firstAccess">Primeiro acesso</label>
+                <p id="firstAccess">
+                  {dayjs(workshopAccess?.createdAt).format("DD/MM/YYYY HH:mm")}
+                </p>
+              </span>
+              <span>
+                <label htmlFor="lastAccess">Último acesso</label>
+                <p id="lastAccess">
+                  {dayjs(workshopAccess?.updatedAt).format("DD/MM/YYYY HH:mm")}
+                </p>
+              </span>
+            </div>
+          </>
+        )}
       </div>
 
       <div className="content-certificate-redirect">
@@ -118,6 +122,7 @@ export const SpecificWorkshop = ({ workshopId }: { workshopId: string }) => {
           }`}
           href={`/workshops/${workshopId}/certificado`}
           passHref
+          data-testid="redirect-action-button"
         >
           Acesse seu certificado
         </Link>

@@ -17,8 +17,8 @@ export class UserService {
   }
 
   async getUser(id: string) {
-    const { data } = await axios.get(`http://localhost:3333/api/users/${id}`);
+    const response = await axios.get(`http://localhost:3333/api/users/${id}`);
 
-    return data;
+    return response?.data;
   }
 }
