@@ -1,10 +1,9 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import Login from "../../app/login/page";
-import { UserService } from "@/services/UserService";
+import { UserService } from "../../services/UserService";
 
-// Mock do UserService
-vi.mock("@/services/UserService", () => ({
+vi.mock("../../services/UserService", () => ({
   UserService: vi.fn().mockImplementation(() => ({
     login: vi.fn(),
   })),

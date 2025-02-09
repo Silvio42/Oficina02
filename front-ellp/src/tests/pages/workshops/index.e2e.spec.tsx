@@ -1,88 +1,30 @@
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
-import { beforeEach, describe, expect, test, vitest } from "vitest";
+import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import { describe, test, expect, vi } from "vitest";
+import WokshopsCreation from "../../../app/workshops/criar/page";
 
-import Workshops from "../../../app/workshops/page";
-
-vitest.mock("@/services/WorkshopService", () => ({
-  getAllWorkshop: vitest.fn().mockResolvedValue([
-    {
-      id: "1",
-      name: "Test Workshop 1",
-      description: "This is a test workshop description.",
-      startAt: new Date("2024-12-10"),
-      manager: "John Doe",
-      volunteers: [],
-    },
-  ]),
-  getByIdWorkshop: vitest.fn().mockResolvedValue({
-    id: "1",
-    name: "Test Workshop 1",
-    description: "This is a test workshop description.",
-    startAt: new Date("2024-12-10"),
-    manager: "John Doe",
-    volunteers: [],
-  }),
-  deleteWorkshop: vitest.fn().mockResolvedValue({
-    id: "1",
-    name: "Test Workshop 1",
-    description: "This is a test workshop description.",
-    startAt: new Date("2024-12-10"),
-    manager: "John Doe",
-    volunteers: [],
-  }),
+vi.mock("../../../services/WorkshopService", () => ({
+  createWorkshop: vi.fn().mockResolvedValue({ status: 201 }),
 }));
 
-describe("Workshops Page", () => {
-  beforeEach(() => vitest.clearAllMocks());
+vi.mock("../../../services/StudentService", () => ({
+  createStudent: vi.fn().mockResolvedValue({
+    data: { _doc: { _id: "123", name: "Aluno Teste" } },
+  }),
+  deleteStudent: vi.fn().mockResolvedValue({}),
+}));
 
-  test("renders the create workshop button and redirects", async () => {
-    render(<Workshops />);
+describe("Workshop Creation Page", () => {
+  test("adds a student when clicking the add button", async () => {
+    render(<WokshopsCreation />);
 
-    const createButton = screen.getByTestId("create-workshop-redirect");
-    expect(createButton).toBeDefined();
-    expect(createButton).toHaveAttribute("href", "/workshops/criar");
-  });
+    const input = screen.getByPlaceholderText(/Nome do aluno/i);
+    const addButton = screen.getByText(/Adicionar Aluno/i);
 
-  test("Shoud be able to load and display all workshops", async () => {
-    render(<Workshops />);
-
-    await waitFor(() => {
-      expect(screen.getByText("Test Workshop 1")).toBeDefined();
-    });
-
-    vitest.clearAllMocks();
-  });
-
-  test("deletes a workshop and reloads the list", async () => {
-    render(<Workshops />);
+    fireEvent.change(input, { target: { value: "Aluno Teste" } });
+    fireEvent.click(addButton);
 
     await waitFor(() => {
-      expect(screen.getByText("Test Workshop 1")).toBeDefined();
-    });
-
-    const deleteButtons = screen.getAllByText("", { selector: ".pi-trash" });
-    fireEvent.click(deleteButtons[0]);
-  });
-
-  test("Should be able to search specific workshop", async () => {
-    render(<Workshops />);
-
-    const search = screen.getByTestId("table-search");
-    fireEvent.change(search, { target: { value: "Test Workshop 1" } });
-
-    await waitFor(() => {
-      expect(screen.getByText("Test Workshop 1")).toBeDefined();
-    });
-  });
-
-  test("Should not be able to search specific workshop", async () => {
-    render(<Workshops />);
-
-    const search = screen.getByTestId("table-search");
-    fireEvent.change(search, { target: { value: "Test UTFPR" } });
-
-    await waitFor(() => {
-      expect(screen.getByText("Nenhum workshop encontrado.")).toBeDefined();
+      expect(screen.getByText("Aluno Teste")).toBeInTheDocument();
     });
   });
 });

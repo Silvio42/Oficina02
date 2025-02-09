@@ -7,8 +7,8 @@ import {
   getAllWorkshop,
   getByIdWorkshop,
   updateWorkshop,
-} from "@/services/WorkshopService";
-import { WorkshopEntity } from "@/entities/WorkshopEntity";
+} from "../../services/WorkshopService";
+import { WorkshopEntity } from "../../entities/WorkshopEntity";
 
 vitest.mock("axios");
 
@@ -29,6 +29,7 @@ describe("Workshop Service", () => {
           startAt: "2024-12-01T00:00:00Z",
           manager: "Manager1",
           volunteers: [],
+          students: [],
         },
       ];
 
@@ -45,7 +46,7 @@ describe("Workshop Service", () => {
   });
 
   describe("create", () => {
-    it("Should be able to send a POST request with the correct payload", async () => {
+    it("Should be able to send a POST request with the correct payload including students", async () => {
       mockedAxios.post.mockResolvedValue({});
 
       const payload = {
@@ -53,16 +54,22 @@ describe("Workshop Service", () => {
         description: "Workshop Description",
         startAt: new Date(),
         manager: "manager-id",
+        students: ["student-1", "student-2"],
       };
 
       await createWorkshop(
         payload.name,
         payload.description,
         payload.startAt,
-        payload.manager
+        payload.manager,
+        payload.students
       );
 
       expect(mockedAxios.post).toHaveBeenCalledTimes(1);
+      expect(mockedAxios.post).toHaveBeenCalledWith(
+        expect.any(String),
+        expect.objectContaining({ students: payload.students })
+      );
     });
   });
 
@@ -71,11 +78,15 @@ describe("Workshop Service", () => {
       mockedAxios.put.mockResolvedValue({ data: { success: true } });
 
       const id = "workshop-id";
-      const data = { name: "Updated Workshop" };
+      const data = { name: "Updated Workshop", students: ["student-3"] };
 
       await updateWorkshop(id, data);
 
       expect(mockedAxios.put).toHaveBeenCalledTimes(1);
+      expect(mockedAxios.put).toHaveBeenCalledWith(
+        expect.any(String),
+        expect.objectContaining({ students: data.students })
+      );
     });
   });
 
@@ -92,7 +103,7 @@ describe("Workshop Service", () => {
   });
 
   describe("getById", () => {
-    it("Should be able to send a GET request with the correct ID", async () => {
+    it("Should be able to send a GET request with the correct ID and return students", async () => {
       const mockResponse: WorkshopEntity = {
         id: "1",
         name: "Workshop 1",
@@ -100,16 +111,18 @@ describe("Workshop Service", () => {
         startAt: "2024-12-01T00:00:00Z",
         manager: "Manager1",
         volunteers: [],
+        students: ["student-1", "student-2"],
       };
 
       mockedAxios.get.mockResolvedValue({ data: mockResponse });
 
-      const id = "workshop-id";
+      const id = "1";
 
       const result = await getByIdWorkshop(id);
-
+      
       expect(mockedAxios.get).toHaveBeenCalledTimes(1);
       expect(result).toEqual(mockResponse);
+      expect(result.students).toHaveLength(2);
     });
   });
 });

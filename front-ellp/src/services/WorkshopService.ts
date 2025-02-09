@@ -3,17 +3,20 @@ import axios from "axios";
 
 export const baseURL = "http://localhost:3333/api/workshops/";
 
+
 export const createWorkshop = async (
   name: string,
   description: string,
   startAt: Date,
-  manager: string
+  manager: string,
+  students: Array<string>
 ) =>
   axios.post(baseURL, {
     name,
     description,
     startAt,
     manager,
+    students
   });
 
 export const updateWorkshop = async (id: string, data: object) =>
@@ -31,7 +34,7 @@ export const getAllWorkshop = async (
 
 export const getByIdWorkshop = async (
   id: string
-): Promise<Array<WorkshopEntity>> => {
+): Promise<WorkshopEntity> => {
   const { data } = await axios.get(baseURL + id);
   return data;
 };

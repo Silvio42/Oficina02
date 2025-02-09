@@ -1,6 +1,6 @@
 "use client";
 
-import { UserService } from "@/services/UserService";
+import { UserService } from "../../services/UserService";
 import axios from "axios";
 import Link from "next/link";
 import { useState } from "react";

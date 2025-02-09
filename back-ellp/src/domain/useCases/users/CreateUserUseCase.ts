@@ -31,11 +31,6 @@ export class CreateUserUseCase {
       throw new Error("Usuário deve ter pelo menos 18 anos");
     }
 
-    const existingUser = await this.userRepository.findByEmail(email);
-    if (existingUser) {
-      throw new Error("Usuário já existe com este e-mail");
-    }
-
     return this.userRepository.create(params);
   }
 }
