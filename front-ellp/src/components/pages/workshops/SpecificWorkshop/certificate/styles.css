@@ -1,0 +1,93 @@
+.container-certificate {
+  display: flex;
+  width: 70%;
+  height: 70%;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  background-color: rgb(226, 226, 226);
+  margin: auto;
+  box-shadow: 0px 0px 40px #00000020;
+  flex-direction: column;
+  transition: 0.35s all ease;
+  cursor: pointer;
+}
+
+.container-certificate:hover {
+  box-shadow: 0px 0px 40px #00000040;
+  border-radius: 20px;
+}
+
+.container-certificate:hover .certificate-user-tag {
+  box-shadow: 0px 0px 40px #00000020;
+  border-radius: 14px;
+}
+
+.certificate-status-tag {
+  position: absolute;
+  top: 1.5rem;
+  left: 1.5rem;
+  background-color: #c8b800;
+  color: black;
+  border-radius: 999px;
+  transition: 0.25s all ease;
+  box-shadow: 0px 0px 20px #00000010;
+  padding: 1rem 1.25rem;
+}
+
+.certificate-user-tag {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background-color: black;
+  color: white;
+  padding: 1rem 1.25rem;
+  transition: 0.25s all ease;
+  box-shadow: 0px 0px 20px #00000010;
+  height: fit-content;
+  width: fit-content;
+}
+
+.certificate-user-tag p,
+.certificate-status-tag p {
+  margin: 0px;
+}
+
+html,
+body {
+  background-color: #87ceeb;
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+  position: relative;
+}
+
+h4 {
+  font-size: 24px;
+}
+
+h2 {
+  font-size: 44px;
+  margin: 10rem 0;
+}
+
+p {
+  font-size: 20px;
+}
+
+.footer-text {
+  position: absolute;
+  bottom: 2rem;
+  font-size: 14px;
+}
+
+.content-certificate-description {
+  display: flex;
+  flex-direction: column;
+  max-width: 55%;
+}
+
+.content-certificate-description p {
+  margin: 0.25rem;
+  text-align: center;
+}

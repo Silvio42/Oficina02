@@ -10,7 +10,9 @@ export class CreateUserUseCase {
     private userRepository: UserRepository
   ) {}
 
-  async execute(params: CreateUserData.Params): Promise<CreateUserData.Response> {
+  async execute(
+    params: CreateUserData.Params
+  ): Promise<CreateUserData.Response> {
     const { email, password, dateOfBirth } = params;
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;

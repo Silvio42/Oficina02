@@ -3,29 +3,32 @@ import { describe, it, expect, vitest } from "vitest";
 
 import WokshopsCreation from "../../../../app/workshops/criar/page";
 
-vitest.mock(import("../../../../services/WorkshopService"), async (importOriginal) => {
-  const actual = await importOriginal();
-  return {
-    ...actual,
-    createWorkshop: vitest.fn().mockResolvedValue({}),
-    getByIdWorkshop: vitest.fn().mockResolvedValue({
-      id: "1",
-      name: "Test Workshop 1",
-      description: "This is a test workshop description.",
-      startAt: new Date("2024-12-10"),
-      manager: "John Doe",
-      volunteers: [],
-    }),
-    deleteWorkshop: vitest.fn().mockResolvedValue({
-      id: "1",
-      name: "Test Workshop 1",
-      description: "This is a test workshop description.",
-      startAt: new Date("2024-12-10"),
-      manager: "John Doe",
-      volunteers: [],
-    }),
-  };
-});
+vitest.mock(
+  import("../../../../services/WorkshopService"),
+  async (importOriginal) => {
+    const actual = await importOriginal();
+    return {
+      ...actual,
+      createWorkshop: vitest.fn().mockResolvedValue({}),
+      getByIdWorkshop: vitest.fn().mockResolvedValue({
+        id: "1",
+        name: "Test Workshop 1",
+        description: "This is a test workshop description.",
+        startAt: new Date("2024-12-10"),
+        manager: "John Doe",
+        volunteers: [],
+      }),
+      deleteWorkshop: vitest.fn().mockResolvedValue({
+        id: "1",
+        name: "Test Workshop 1",
+        description: "This is a test workshop description.",
+        startAt: new Date("2024-12-10"),
+        manager: "John Doe",
+        volunteers: [],
+      }),
+    };
+  }
+);
 
 describe("WokshopsCreation Page", () => {
   const descriptionText = "Workshop Description";

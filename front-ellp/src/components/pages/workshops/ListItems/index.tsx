@@ -14,6 +14,7 @@ import { WorkshopEntity } from "@/entities/WorkshopEntity";
 
 import "./styles.css";
 import { Button } from "primereact/button";
+import Link from "next/link";
 
 export const ListItems = ({
   workshops,
@@ -92,6 +93,19 @@ export const ListItems = ({
       <Column field="startAt" sortable header="Começa quando?"></Column>
       <Column field="volunteers.length" sortable header="Voluntários"></Column>
       <Column field="manager.username" header="Coordenador"></Column>
+      <Column
+        field="id"
+        header=""
+        body={(e) => {
+          return (
+            <Link href={`/workshops/${e.id}`}>
+              <Button style={{ width: "fit-content" }}>
+                <InputIcon className="pi pi-eye" />
+              </Button>
+            </Link>
+          );
+        }}
+      ></Column>
       <Column
         field="manager.username"
         header=""

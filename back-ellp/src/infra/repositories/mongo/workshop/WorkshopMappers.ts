@@ -9,18 +9,7 @@ export class WorkshopMappers {
     return { id: data._id, ...objectData };
   }
 
-  static toModel(objectData: WorkshopEntity): IWorkshopModel {
-    const data = { ...objectData };
-    delete objectData.id;
-
-    return { _id: data.id, ...objectData };
-  }
-
   static toEntities(arrayData: Array<IWorkshopModel>): Array<WorkshopEntity> {
     return arrayData.map(this.toEntity);
-  }
-
-  static toModels(arrayData: Array<WorkshopEntity>): Array<IWorkshopModel> {
-    return arrayData.map(this.toModel);
   }
 }

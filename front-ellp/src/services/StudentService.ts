@@ -3,11 +3,9 @@ import axios from "axios";
 
 export const baseURL = "http://localhost:3333/api/students/";
 
-export const createStudent = async (
-  name: string
-) =>
+export const createStudent = async (name: string) =>
   axios.post(baseURL, {
-    name
+    name,
   });
 
 export const updateStudent = async (id: string, data: object) =>
@@ -19,13 +17,11 @@ export const getAllStudent = async (
   term?: string,
   filters?: object
 ): Promise<Array<StudentEntity>> => {
-  const { data } = await axios.get(baseURL, { params: { term, filters } });
-  return data;
+  const response = await axios.get(baseURL, { params: { term, filters } });
+  return response?.data;
 };
 
-export const getByIdStudent = async (
-  id: string
-): Promise<StudentEntity> => {
-  const { data } = await axios.get(baseURL + id);
-  return data;
+export const getByIdStudent = async (id: string): Promise<StudentEntity> => {
+  const response = await axios.get(baseURL + id);
+  return response?.data;
 };
