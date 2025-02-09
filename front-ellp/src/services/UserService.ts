@@ -1,11 +1,7 @@
 import axios from "axios";
 
 export class UserService {
-  async register(
-    email: string,
-    password: string,
-    dateOfBirth: string
-  ) {
+  async register(email: string, password: string, dateOfBirth: string) {
     return axios.post("http://localhost:3333/api/users/register", {
       email,
       password,
@@ -13,13 +9,16 @@ export class UserService {
     });
   }
 
-  async login(
-    email: string,
-    password: string
-  ) {
+  async login(email: string, password: string) {
     return axios.post("http://localhost:3333/api/users/login", {
       email,
-      password
+      password,
     });
+  }
+
+  async getUser(id: string) {
+    const { data } = await axios.get(`http://localhost:3333/api/users/${id}`);
+
+    return data;
   }
 }

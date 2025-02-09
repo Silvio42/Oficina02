@@ -1,13 +1,26 @@
 import * as CreateUserData from "../../../../domain/data/users/ICreateUserData";
 import * as LoginUserData from "../../../../domain/data/users/ILoginUserData";
 import * as FindByIdUserData from "../../../../domain/data/users/IFindByIdUserData";
+import * as FindByEmailUserData from "../../../../domain/data/users/IFindByEmailUserData";
 import { UserMappers } from "./UserMappers";
 import { UserModel } from "./UserModel";
 import bcrypt from "bcrypt";
 
 export class UserRepository
-  implements CreateUserData.ICreateUserData, FindByIdUserData.IFindByIdUserData, LoginUserData.ILoginUserData {
+  implements
+    CreateUserData.ICreateUserData,
+    FindByIdUserData.IFindByIdUserData,
+    LoginUserData.ILoginUserData,
+    FindByEmailUserData.IFindByEmailUserData
+{
   userModel = UserModel;
+
+  async findByEmail({
+    email,
+  }: FindByEmailUserData.Params): Promise<FindByEmailUserData.Response> {
+    const objectData = await UserModel.findOne({ email }).lean();
+    return UserMappers.toEntity(objectData);
+  }
 
   async findById({
     id,
@@ -27,7 +40,7 @@ export class UserRepository
     const { email, password } = params;
 
     const objectData = await UserModel.findOne({ email }).lean();
-    
+
     if (!objectData) return null;
 
     const isPasswordValid = password == objectData.password;

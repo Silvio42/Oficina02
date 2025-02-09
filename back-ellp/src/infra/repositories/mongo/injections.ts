@@ -2,11 +2,12 @@ import { container } from "tsyringe";
 
 import { UserRepository } from "../../../infra/repositories/mongo/users/UserRepository";
 import { WorkshopRepository } from "./workshop/WorkshopRepository";
-
 import { UserRepositoryMock } from "../../../tests/mocks/repositories/UserRepositoryMock";
 import { WorkshopRepositoryMock } from "../../../tests/mocks/repositories/WorkshopRepositoryMock";
 import { StudentRepository } from "./students/StudentRepository";
 import { StudentRepositoryMock } from "../../../tests/mocks/repositories/StudentRepositoryMock";
+import { WorkshopAccessRepository } from "./workshopAccess/WorkshopAccessRepository";
+import { WorkshopAccessRepositoryMock } from "../../../tests/mocks/repositories/WorkshopAccessRepositoryMock";
 
 container.registerSingleton(
   "StudentRepository",
@@ -21,4 +22,11 @@ container.registerSingleton(
 container.registerSingleton(
   "WorkshopRepository",
   process.env.NODE_ENV !== "test" ? WorkshopRepository : WorkshopRepositoryMock
+);
+
+container.registerSingleton(
+  "WorkshopAccessRepository",
+  process.env.NODE_ENV !== "test"
+    ? WorkshopAccessRepository
+    : WorkshopAccessRepositoryMock
 );
