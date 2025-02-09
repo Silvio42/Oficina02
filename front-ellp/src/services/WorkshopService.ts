@@ -27,11 +27,11 @@ export const getAllWorkshop = async (
   term?: string,
   filters?: object
 ): Promise<Array<WorkshopEntity>> => {
-  const { data } = await axios.get(baseURL, { params: { term, filters } });
-  return data;
+  const response = await axios.get(baseURL, { params: { term, filters } });
+  return response?.data;
 };
 
 export const getByIdWorkshop = async (id: string): Promise<WorkshopEntity> => {
-  const { data } = await axios.get(baseURL + id);
-  return data;
+  const response = await axios.get(baseURL + id);
+  return response?.data;
 };
