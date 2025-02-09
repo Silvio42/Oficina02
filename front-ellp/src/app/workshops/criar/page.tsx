@@ -10,7 +10,7 @@ import { createStudent, deleteStudent } from "../../../services/StudentService";
 import { StudentEntity } from "../../../entities/StudentEntity";
 
 import "./styles.css";
-import { BackButton } from "@/components/core/backButton";
+import { BackButton } from "../../../components/core/backButton";
 
 export default function WokshopsCreation() {
   const [fields, setFields] = useState<{

@@ -5,10 +5,10 @@ import dayjs from "dayjs";
 import {
   getByIdWorkshop,
   getByIdWorkshopAccess,
-} from "@/services/WorkshopService";
-import { SpecificWorkshop } from "@/components/pages/workshops/SpecificWorkshop";
+} from "../../../../services/WorkshopService";
+import { SpecificWorkshop } from "../../../../components/pages/workshops/SpecificWorkshop";
 
-vi.mock("@/services/WorkshopService", () => ({
+vi.mock("../../../../services/WorkshopService", () => ({
   getByIdWorkshop: vi.fn(),
   getByIdWorkshopAccess: vi.fn(),
   createWorkshopAccess: vi.fn().mockResolvedValue({ status: 200 }),

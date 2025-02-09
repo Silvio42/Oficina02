@@ -5,9 +5,9 @@ import { useMemo, useState } from "react";
 import { Button } from "primereact/button";
 import { InputIcon } from "primereact/inputicon";
 
-import { WorkshopEntity } from "@/entities/WorkshopEntity";
-import { ListItems } from "@/components/pages/workshops/ListItems";
-import { getAllWorkshop, deleteWorkshop } from "@/services/WorkshopService";
+import { WorkshopEntity } from "../../entities/WorkshopEntity";
+import { ListItems } from "../../components/pages/workshops/ListItems";
+import { getAllWorkshop, deleteWorkshop } from "../../services/WorkshopService";
 
 import "./styles.css";
 

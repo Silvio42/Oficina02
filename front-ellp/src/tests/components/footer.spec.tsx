@@ -1,10 +1,10 @@
 import { test, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
 
-import { Header } from "../../components/core/header";
+import { Footer } from "../../components/core/footer";
 
-test("Should be able to render header component", () => {
-  render(<Header />);
-  const element = screen.getByTestId("header");
+test("Should be able to render footer component", () => {
+  render(<Footer />);
+  const element = screen.getByTestId("footer");
   expect(element).toBeInTheDocument();
 });

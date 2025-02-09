@@ -2,9 +2,9 @@ import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import html2canvas from "html2canvas";
 import { expect, vi } from "vitest";
 
-import * as UserCookies from "@/actions/userCookies";
-import * as WorkshopAccessService from "@/services/WorkshopAccessService";
-import { WorkshopUserCertificate } from "@/components/pages/workshops/SpecificWorkshop/certificate";
+import * as UserCookies from "../../../../../actions/userCookies";
+import * as WorkshopAccessService from "../../../../../services/WorkshopAccessService";
+import { WorkshopUserCertificate } from "../../../../../components/pages/workshops/SpecificWorkshop/certificate/index";
 
 vi.mock("html2canvas", () => ({
   default: vi.fn(() =>
@@ -12,11 +12,11 @@ vi.mock("html2canvas", () => ({
   ),
 }));
 
-vi.mock("@/services/WorkshopAccessService", () => ({
+vi.mock("../../../../../services/WorkshopAccessService", () => ({
   getByIdWorkshopAccess: vi.fn(),
 }));
 
-vi.mock("@/actions/userCookies", () => ({
+vi.mock("../../../../../actions/userCookies", () => ({
   getUserId: vi.fn(),
 }));
 

@@ -5,14 +5,14 @@ import Link from "next/link";
 import dayjs from "dayjs";
 dayjs.extend(isBetween);
 
-import { WorkshopEntity } from "@/entities/WorkshopEntity";
-import { getByIdWorkshop } from "@/services/WorkshopService";
+import { WorkshopEntity } from "../../../../entities/WorkshopEntity";
+import { getByIdWorkshop } from "../../../../services/WorkshopService";
 import {
   createWorkshopAccess,
   getByIdWorkshopAccess,
-} from "@/services/WorkshopAccessService";
-import { getUserId } from "@/actions/userCookies";
-import { WorkshopAccessEntity } from "@/entities/WorkshopAccessEntity";
+} from "../../../../services/WorkshopAccessService";
+import { getUserId } from "../../../../actions/userCookies";
+import { WorkshopAccessEntity } from "../../../../entities/WorkshopAccessEntity";
 
 import "./styles.css";
 
