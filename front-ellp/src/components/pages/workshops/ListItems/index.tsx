@@ -12,9 +12,10 @@ import { FilterMatchMode } from "primereact/api";
 import { Button } from "primereact/button";
 import { Dialog } from "primereact/dialog";
 import { WorkshopEntity } from "@/entities/WorkshopEntity";
-import { createVolunteers } from "@/services/volunteersService";
+import { createVolunteers } from "../../../../services/VolunteersService";
 
 import "./styles.css";
+import Link from "next/link";
 
 export const ListItems = ({
   workshops,
@@ -122,10 +123,12 @@ export const ListItems = ({
         <Column
           field="id"
           header=""
-          body={() => (
-            <Button style={{ width: "fit-content" }}>
-              <InputIcon className="pi pi-eye" />
-            </Button>
+          body={(e) => (
+            <Link href={`/workshops/${e.id}`}>
+              <Button style={{ width: "fit-content" }}>
+                <InputIcon className="pi pi-eye" />
+              </Button>
+            </Link>
           )}
         ></Column>
 
