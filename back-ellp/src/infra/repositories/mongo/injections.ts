@@ -8,6 +8,8 @@ import { StudentRepository } from "./students/StudentRepository";
 import { StudentRepositoryMock } from "../../../tests/mocks/repositories/StudentRepositoryMock";
 import { WorkshopAccessRepository } from "./workshopAccess/WorkshopAccessRepository";
 import { WorkshopAccessRepositoryMock } from "../../../tests/mocks/repositories/WorkshopAccessRepositoryMock";
+import { VolunteersRepository } from "./volunteers/VolunteersRepository";
+import { VolunteersRepositoryMock } from "../../../tests/mocks/repositories/VolunteersRepositoryMock";
 
 container.registerSingleton(
   "StudentRepository",
@@ -29,4 +31,11 @@ container.registerSingleton(
   process.env.NODE_ENV !== "test"
     ? WorkshopAccessRepository
     : WorkshopAccessRepositoryMock
+);
+
+container.registerSingleton(
+  "VolunteersRepository",
+  process.env.NODE_ENV !== "test"
+    ? VolunteersRepository
+    : VolunteersRepositoryMock
 );
